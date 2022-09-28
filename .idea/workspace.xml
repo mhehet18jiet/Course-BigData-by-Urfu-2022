@@ -41,7 +41,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1664382801647</updated>
-      <workItem from="1664382848024" duration="4651000" />
+      <workItem from="1664382848024" duration="5355000" />
     </task>
     <servers />
   </component>
@@ -62,5 +62,6 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Course_BigData_by_Urfu_2022$Hello_World_w_Git_on_py.coverage" NAME="Hello World w Git on py Coverage Results" MODIFIED="1664383120555" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Course_BigData_by_Urfu_2022$_.coverage" NAME="Линейная регрессия Coverage Results" MODIFIED="1664384734887" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Course_BigData_by_Urfu_2022$LineRegress_2.coverage" NAME="LineRegress 2 Coverage Results" MODIFIED="1664389546413" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
