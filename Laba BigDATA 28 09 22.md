@@ -49,9 +49,7 @@
 - Для Unity в отчете привести скришноты вывода сообщения Hello
 World в консоль.
 
-- Link on my repository ^-^ `https://github.com/mhehet18jiet/Course-BigData-by-Urfu-2022/tree/main` <- тут проверять работу
-
-- Python
+ Python
 
 ```py
 
@@ -59,7 +57,7 @@ print("Hello World!")
 
 ```
 
-- And Unity
+ And Unity
 
 ```C#
 
