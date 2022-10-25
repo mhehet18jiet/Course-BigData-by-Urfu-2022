@@ -1,0 +1,56 @@
+{
+    "RollerBall": {
+        "checkpoints": [
+            {
+                "steps": 22391,
+                "file_path": "results\\RollerBall\\RollerBall\\RollerBall-22391.onnx",
+                "reward": null,
+                "creation_time": 1666701687.673059,
+                "auxillary_file_paths": [
+                    "results\\RollerBall\\RollerBall\\RollerBall-22391.pt"
+                ]
+            },
+            {
+                "steps": 499993,
+                "file_path": "results\\RollerBall\\RollerBall\\RollerBall-499993.onnx",
+                "reward": null,
+                "creation_time": 1666703171.2896783,
+                "auxillary_file_paths": [
+                    "results\\RollerBall\\RollerBall\\RollerBall-499993.pt"
+                ]
+            },
+            {
+                "steps": 500009,
+                "file_path": "results\\RollerBall\\RollerBall\\RollerBall-500009.onnx",
+                "reward": 1.0,
+                "creation_time": 1666703171.3537374,
+                "auxillary_file_paths": [
+                    "results\\RollerBall\\RollerBall\\RollerBall-500009.pt"
+                ]
+            },
+            {
+                "steps": 500009,
+                "file_path": "results\\RollerBall\\RollerBall\\RollerBall-500009.onnx",
+                "reward": null,
+                "creation_time": 1666703302.4226892,
+                "auxillary_file_paths": [
+                    "results\\RollerBall\\RollerBall\\RollerBall-500009.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 500009,
+            "file_path": "results\\RollerBall\\RollerBall.onnx",
+            "reward": null,
+            "creation_time": 1666703302.4226892,
+            "auxillary_file_paths": [
+                "results\\RollerBall\\RollerBall\\RollerBall-500009.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.28.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}
