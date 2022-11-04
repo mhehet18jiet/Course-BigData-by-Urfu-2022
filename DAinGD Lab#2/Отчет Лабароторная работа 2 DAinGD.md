@@ -7,8 +7,8 @@
 | Задание | Выполнение | Баллы |
 | ------ | ------ | ------ |
 | Задание 1 | * | 60 |
-| Задание 2 | # | 20 |
-| Задание 3 | # | 20 |
+| Задание 2 | * | 20 |
+| Задание 3 | * | 20 |
 
 знак "*" - задание выполнено; знак "#" - задание не выполнено;
 
@@ -90,6 +90,230 @@ Step 3. Создаем проект Unity, в который добавляем 
 - Гифка работы скрипта
 
 ![](https://github.com/mhehet18jiet/DA-in-GameDev/blob/main/DAinGD%20Lab%232/Lab2GIF%20(2).gif)
+
+## Задание 2
+Присоединим прогресс обучения нашей модели линейной регрессии из Лабораторной 1 к GoogleSheets
+```py
+import numpy as np
+import matplotlib.pyplot as plt
+import gspread
+import numpy.random
+
+import numpy as np
+import matplotlib.pyplot as plt
+import gspread
+import numpy.random
+
+x = [3,21,22,34,54,34,55,67,89,99]
+x = np.array(x)
+y = [2,22,24,65,79,82,55,130,150,199]
+y = np.array(y)
+gc = gspread.service_account(filename='unitysound-b3b9dd2033d6.json')
+sh = gc.open("UnitySound")
+plt.scatter(x,y)
+plt.show()
+def model(a, b, x):
+    return a*x + b
+
+def loss_function(a, b, x, y):
+    num = len(x)
+    prediction=model(a,b,x)
+    return (0.5/num) * (np.square(prediction-y)).sum()
+
+def optimize(a,b,x,y):
+    num = len(x)
+    prediction = model(a,b,x)
+    da = (1.0/num) * ((prediction -y)*x).sum()
+    db = (1.0/num) * ((prediction -y).sum())
+    a = a - Lr*da
+    b = b - Lr*db
+    return a, b
+
+def iterate(a,b,x,y,times):
+    for i in range(times):
+        a,b = optimize(a,b,x,y)
+    return a,b
+a = np.random.rand(1)
+print(a)
+b = np.random.rand(1)
+print(b)
+Lr = 0.000001
+for j in range(1,6):
+    if j == 1:
+        print("j = ", j)
+        a, b = iterate(a, b, x, y, 1)
+        prediction = model(a, b, x)
+        loss = loss_function(a, b, x, y)
+        print(a, b, loss)
+        plt.scatter(x, y)
+        plt.plot(x, prediction)
+        plt.show()
+        _loss = str(loss)
+        _loss = _loss.replace('.', ',')
+        sh.sheet1.update(('A' + str(j)), str(j))
+        sh.sheet1.update(('B' + str(j)), str(_loss))
+    if j == 2:
+        print("j = ", j)
+        a, b = iterate(a, b, x, y, 100)
+        prediction = model(a, b, x)
+        loss = loss_function(a, b, x, y)
+        print(a, b, loss)
+        plt.scatter(x, y)
+        plt.plot(x, prediction)
+        plt.show()
+        _loss = str(loss)
+        _loss = _loss.replace('.', ',')
+        sh.sheet1.update(('A' + str(j)), str(j))
+        sh.sheet1.update(('B' + str(j)), str(_loss))
+    if j == 3:
+        print("j = ", j)
+        a, b = iterate(a, b, x, y, 250)
+        prediction = model(a, b, x)
+        loss = loss_function(a, b, x, y)
+        print(a, b, loss)
+        plt.scatter(x, y)
+        plt.plot(x, prediction)
+        plt.show()
+        _loss = str(loss)
+        _loss = _loss.replace('.', ',')
+        sh.sheet1.update(('A' + str(j)), str(j))
+        sh.sheet1.update(('B' + str(j)), str(_loss))
+    if j == 4:
+        print("j = ", j)
+        a, b = iterate(a, b, x, y, 300)
+        prediction = model(a, b, x)
+        loss = loss_function(a, b, x, y)
+        print(a, b, loss)
+        plt.scatter(x, y)
+        plt.plot(x, prediction)
+        plt.show()
+        _loss = str(loss)
+        _loss = _loss.replace('.', ',')
+        sh.sheet1.update(('A' + str(j)), str(j))
+        sh.sheet1.update(('B' + str(j)), str(_loss))
+    if j == 5:
+        print("j = ", j)
+        a, b = iterate(a, b, x, y, 15000)
+        prediction = model(a, b, x)
+        loss = loss_function(a, b, x, y)
+        print(a, b, loss)
+        plt.scatter(x, y)
+        plt.plot(x, prediction)
+        plt.show()
+        _loss = str(loss)
+        _loss = _loss.replace('.', ',')
+        sh.sheet1.update(('A' + str(j)), str(j))
+        sh.sheet1.update(('B' + str(j)), str(_loss))
+```
+
+- Запустим и посмотрим на результат.
+
+![Start](https://user-images.githubusercontent.com/90757310/200011397-c2e18252-7276-4efe-b5c7-a6ccfc5d2631.gif)
+
+## Задание 3
+
+- Напишем скрипт с подключением к новой гугл таблице. Также адаптируем логику под изменение величиныы loss, которая свидетельствует о результате обучения нашей модели. Относительно loss выстроим алгоритм воспроизведения звуков с тремя состояниями: 1) Начало обучения, 2) Середина обучения, 3)Модель обучена.
+
+```C#
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Networking;
+using SimpleJSON;
+
+public class NewBehaviourScript : MonoBehaviour
+{
+    public AudioClip goodSpeak;
+    public AudioClip normalSpeak;
+    public AudioClip badSpeak;
+    private AudioSource selectAudio;
+    private Dictionary<string,float> dataSet = new Dictionary<string, float>();
+    private bool statusStart = false;
+    private int i = 1;
+
+    void Start()
+    {
+        StartCoroutine(GoogleSheets());
+    }
+
+    void Update()
+    {
+     
+        if (dataSet["Mon_" + i.ToString()] >= 3000 & statusStart == false & i != (dataSet.Count + 1) )
+        {
+            StartCoroutine(PlaySelectAudioGood());
+            Debug.Log(dataSet["Mon_" + i.ToString()]);
+        }
+
+        if (dataSet["Mon_" + i.ToString()] < 3000 & dataSet["Mon_" + i.ToString()] > 200 & statusStart == false & i != (dataSet.Count + 1) )//1/3
+        {
+            StartCoroutine(PlaySelectAudioNormal());
+            Debug.Log(dataSet["Mon_" + i.ToString()]);
+        }
+
+        if (dataSet["Mon_" + i.ToString()] < 200 & statusStart == false & i != (dataSet.Count + 1)) // done
+        {
+            StartCoroutine(PlaySelectAudioBad());
+            Debug.Log(dataSet["Mon_" + i.ToString()]);
+        }
+     
+    }
+
+    IEnumerator GoogleSheets()
+    {
+        UnityWebRequest curentResp = UnityWebRequest.Get("https://sheets.googleapis.com/v4/spreadsheets/1wDAIR_6i90CYx65ufw8R-w44TIaKR_E5XS9cH6sc96U/values/Лист1?key=AIzaSyCn2PlrP0HeI-BwONiukz37VBrXIg6gjNs");
+        yield return curentResp.SendWebRequest();
+        string rawResp = curentResp.downloadHandler.text;
+        var rawJson = JSON.Parse(rawResp);
+        foreach (var itemRawJson in rawJson["values"])
+        {
+            
+            var parseJson = JSON.Parse(itemRawJson.ToString());
+            var selectRow = parseJson[0].AsStringList;
+            dataSet.Add(("Mon_" + selectRow[0]), float.Parse(selectRow[1]));
+        }   
+    }
+    
+    IEnumerator PlaySelectAudioGood()
+    {
+        statusStart = true;
+        selectAudio = GetComponent<AudioSource>();
+        selectAudio.clip = goodSpeak;
+        selectAudio.Play();
+        yield return new WaitForSeconds(3);
+        statusStart = false;
+        i++;
+    }
+
+    IEnumerator PlaySelectAudioNormal()
+    {
+        statusStart = true;
+        selectAudio = GetComponent<AudioSource>();
+        selectAudio.clip = normalSpeak;
+        selectAudio.Play();
+        yield return new WaitForSeconds(4);
+        statusStart = false;
+        i++;
+    }
+
+    IEnumerator PlaySelectAudioBad()
+    {
+        statusStart = true;
+        selectAudio = GetComponent<AudioSource>();
+        selectAudio.clip = badSpeak;
+        selectAudio.Play();
+        yield return new WaitForSeconds(4);
+        statusStart = false;
+        i++;
+    }
+}
+```
+
+- Создадим свои звуковые файлы и добавим их в компонент нашего скрипта.
+
+Демонстрация
+
+![End](https://user-images.githubusercontent.com/90757310/200013358-990af31e-0030-47b3-825f-0dfdbea1a7cf.gif)
 
 
 ## Выводы
