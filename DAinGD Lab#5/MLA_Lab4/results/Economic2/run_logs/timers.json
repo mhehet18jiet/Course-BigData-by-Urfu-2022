@@ -1,0 +1,42 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1669825576",
+        "python_version": "3.6.13 |Anaconda, Inc.| (default, Mar 16 2021, 11:37:27) [MSC v.1916 64 bit (AMD64)]",
+        "command_line_arguments": "C:\\Users\\95063\\anaconda3\\envs\\MLAgent\\Scripts\\mlagents-learn Economic2.yaml --run-id=Economic2 --resume",
+        "mlagents_version": "0.28.0",
+        "mlagents_envs_version": "0.28.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "1.7.1+cu110",
+        "numpy_version": "1.19.5",
+        "end_time_seconds": "1669825586"
+    },
+    "total": 10.8088639,
+    "count": 1,
+    "self": 0.007609000000000421,
+    "children": {
+        "run_training.setup": {
+            "total": 0.0933486,
+            "count": 1,
+            "self": 0.0933486
+        },
+        "TrainerController.start_learning": {
+            "total": 10.7079063,
+            "count": 1,
+            "self": 7.470000000076027e-05,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 10.7078241,
+                    "count": 1,
+                    "self": 10.7078241
+                },
+                "TrainerController._save_models": {
+                    "total": 7.499999998827889e-06,
+                    "count": 1,
+                    "self": 7.499999998827889e-06
+                }
+            }
+        }
+    }
+}

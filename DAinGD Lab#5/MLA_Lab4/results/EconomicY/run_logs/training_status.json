@@ -1,0 +1,66 @@
+{
+    "Economic": {
+        "elo": 1200.2994431893292,
+        "checkpoints": [
+            {
+                "steps": 32808,
+                "file_path": "results\\Economic\\Economic\\Economic-32808.onnx",
+                "reward": null,
+                "creation_time": 1669821369.6746678,
+                "auxillary_file_paths": [
+                    "results\\Economic\\Economic\\Economic-32808.pt"
+                ]
+            },
+            {
+                "steps": 40824,
+                "file_path": "results\\Economic\\Economic\\Economic-40824.onnx",
+                "reward": 1.0,
+                "creation_time": 1669823436.8817737,
+                "auxillary_file_paths": [
+                    "results\\Economic\\Economic\\Economic-40824.pt"
+                ]
+            },
+            {
+                "steps": 126600,
+                "file_path": "results\\Economic\\Economic\\Economic-126600.onnx",
+                "reward": 1.0,
+                "creation_time": 1669823888.0189967,
+                "auxillary_file_paths": [
+                    "results\\Economic\\Economic\\Economic-126600.pt"
+                ]
+            },
+            {
+                "steps": 129672,
+                "file_path": "results\\Economic\\Economic\\Economic-129672.onnx",
+                "reward": null,
+                "creation_time": 1669825734.2233043,
+                "auxillary_file_paths": [
+                    "results\\Economic\\Economic\\Economic-129672.pt"
+                ]
+            },
+            {
+                "steps": 175080,
+                "file_path": "results\\Economic\\Economic\\Economic-175080.onnx",
+                "reward": null,
+                "creation_time": 1669825955.8388982,
+                "auxillary_file_paths": [
+                    "results\\Economic\\Economic\\Economic-175080.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 175080,
+            "file_path": "results\\Economic\\Economic.onnx",
+            "reward": null,
+            "creation_time": 1669825955.8388982,
+            "auxillary_file_paths": [
+                "results\\Economic\\Economic\\Economic-175080.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.28.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}
