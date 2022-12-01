@@ -1,15 +1,15 @@
 behaviors:
-  Economic:
+  Alpha:
     trainer_type: ppo
     hyperparameters:
       batch_size: 1024
       buffer_size: 10240
       learning_rate: 3.0e-4
       learning_rate_schedule: linear
-      beta: 1.0e-3
-      epsilon: 0.1
-      lambd: 0.94
-      num_epoch: 5      
+      beta: 1.0e-2
+      epsilon: 0.3
+      lambd: 0.92
+      num_epoch: 7      
     network_settings:
       normalize: false
       hidden_units: 128
